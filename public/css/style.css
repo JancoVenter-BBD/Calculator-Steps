@@ -181,14 +181,13 @@ ul.dark li {
 
 /* history section */
 .historySection {
-  left: 25%;
-  right: 25%;
+  left: 30%;
+  right: 30%;
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 50%;
-  /* border: 1px solid rgb(204, 205, 206); */
-  border-radius: 1rem;
+  width: 40%;
+  margin-bottom: 1rem;
 }
 
 .historySection h3 {
