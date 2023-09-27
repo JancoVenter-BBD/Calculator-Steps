@@ -682,3 +682,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+module.exports = { calculateEquation };
