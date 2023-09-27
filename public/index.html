@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <h1 class="text-center lightHeader m-3" id="header">JavaScript Calculator</h1>
+    <h1 class="" id="header">JavaScript Calculator</h1>
     <br />
 
     <form class="lightDark">
@@ -125,22 +125,14 @@
             </div>
         </div>
     </div>
-    <br class="m-3" />
-    <div class="row mt-3 mb-3">
-        <div class="col-12 col-sm-10 offset-sm-1 col-md-6 offset-md-3 col-xl-4 offset-xl-4 col-xxxl-2 offset-xxxl-5">
-            <div class="card text-bg-light">
-                <div class="card-header">
-                    <h3>History</h3>
-                </div>
-                <div class="card-body">
-                    <ul class="row list-group" id="historyDisplay">
 
-                    </ul>
-                </div>
-            </div>
-            <button id="clearBtn" class="btn btn-outline-danger mt-2" onclick="clearHistory()">Clear History</button>
-        </div>
-    </div>
+    <br/>
+
+    <section class="historySection">
+        <h3>History</h3>
+        <ul id="historyDisplay"></ul>
+        <button id="clearBtn" class="red-btn" onclick="clearHistory()">Clear History</button>
+    </section>
 </body>
 
 </html>
