@@ -53,6 +53,7 @@ button#zero {
   display: inline-block;
   width: 60px;
   height: 34px;
+  margin-right: 20px;
 }
 
 /* Hide default HTML checkbox */
@@ -101,6 +102,14 @@ input:checked+.slider:before {
   transform: translateX(26px);
 }
 
+#themeLabel {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
@@ -122,6 +131,12 @@ input:checked+.slider:before {
   position: fixed;
   top: 10px;
   left: 10px;
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 #previousQuestion {
