@@ -23,7 +23,27 @@ describe("Page Loads and buttons working", () => {
     }
   });
 
-  it ()
+  it ('Checks buttons are inputting correctly', () => {
+    cy.visit("localhost:3000");
+    const buttonIds = [
+      '#one',
+      '#two',
+      '#three',
+      '#four',
+      '#five',
+      '#six',
+      '#seven',
+      '#eight',
+      '#nine',
+      '#zero'
+    ]
+    for (let b = 0; b < buttonIds.length; b++) {
+      cy.get(buttonIds[b]).click();
+    }
+    cy.get('#display').contains('1234567890').should((elem) => {
+      expect(elem.text()).to.equal('1234567890');
+    });
+  })
 });
 
 describe("Enter a calculation and observe results and history", () => {
@@ -90,6 +110,14 @@ describe("Keystrokes are registered correctly", () => {
     cy.get("body").type("3*3*10{enter}");
     cy.get("#display").contains("90").should((elem) => {
       expect(elem.text()).to.equal('90');
+    });
+  });
+
+  it("Checks all button keystronkes", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("1234567890");
+    cy.get("#display").contains("1234567890").should((elem) => {
+      expect(elem.text()).to.equal('1234567890');
     });
   });
 });
