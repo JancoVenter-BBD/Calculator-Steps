@@ -882,6 +882,62 @@ describe("Brackets from button press", () => {
   });
 });
 
+describe("Brackets from keyboard press", () => {
+  it("(2+2) should result in 4", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("(2+2){enter}");
+
+    cy.get("#display").contains("4").should((elem) => {
+      expect(elem.text()).to.equal('4');
+    });
+  });
+
+  it("(2+2)*3 should result in 12", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("(2+2)*3{enter}");
+
+    cy.get("#display").contains("12").should((elem) => {
+      expect(elem.text()).to.equal('12');
+    });
+  });
+
+  it("(2+2)*3^2 should result in 36", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("(2+2)*3^2){enter}");
+
+    cy.get("#display").contains("36").should((elem) => {
+      expect(elem.text()).to.equal('36');
+    });
+  });
+
+  it("((2+2)*3 should result in Error", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("((2+2)*3{enter}");
+
+    cy.get("#display").contains("Error: Mismatched brackets").should((elem) => {
+      expect(elem.text()).to.equal('Error: Mismatched brackets');
+    });
+  });
+
+  it("(2+2)*3) should result in Error", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("(2+2)*3){enter}");
+
+    cy.get("#display").contains("Error: Mismatched brackets").should((elem) => {
+      expect(elem.text()).to.equal('Error: Mismatched brackets');
+    });
+  });
+
+  it("(2+2)*3^2)) should result in Error", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("(2+2)*3^2)){enter}");
+
+    cy.get("#display").contains("Error: Mismatched brackets").should((elem) => {
+      expect(elem.text()).to.equal('Error: Mismatched brackets');
+    });
+  });
+});
+
 describe("Page Loads and buttons working", () => {
   it("Visits the calculator and checks for buttons", () => {
     cy.visit("localhost:3000");
