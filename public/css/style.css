@@ -1,18 +1,53 @@
+:root {
+    --background-color: #fff;
+    --color: #212529;
+    --section-bg-color: rgb(240, 241, 242);
+    --border-color: rgb(204, 205, 206);
+    --info-background-color: rgb(248, 249, 250);
+
+    --gray-color: rgb(108, 117, 125);
+
+
+    /* dark mode toggle */
+    --slider-background-color: #ccc;
+    --slider-background-color-before: white;
+    --slider-background-color-checked: #2196F3;
+
+    /* calculator */
+    --calculator-box-shadow: rgba(127, 127, 127, 1);
+    --previous-question-color: gray;
+
+    --calculator-other-btn-color: var(--gray-color);
+    --calculator-ops-btn-color: rgb(255, 193, 7);
+    --calculator-num-btn-color: rgb(33, 37, 41);
+    --history-btn-color: #dc3545;
+    --history-btn-color-hover: white;
+}
+
+
 body {
     overflow-x: hidden;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
-    font-size: 1rem !important;
-    font-weight: 400 !important;
-    line-height: 1.5 !important;
-    color: #212529 !important;
-    background-color: #fff !important;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+body.light-mode {
+    color: var(--color);
+    background-color: var(--background-color);
+}
+
+body.dark-mode {
+    color: var(--background-color) !important;
+    background-color: var(--color) !important;
 }
 
 
 
 /* main heading */
 #header {
-    text-align: center !important;
+    text-align: center;
     margin: 1rem;
     font-weight: 500;
     line-height: 1.2;
@@ -55,7 +90,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--slider-background-color);
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -67,17 +102,17 @@ body {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: var(--slider-background-color-before);
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+    background-color: var(--slider-background-color-checked);
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px var(--slider-background-color-checked);
 }
 
 input:checked+.slider:before {
@@ -113,25 +148,35 @@ input:checked+.slider:before {
     flex-direction: column;
     width: 40%;
     margin-bottom: 1rem;
-    border-radius: 80px !important;
-    box-shadow: 0px 10px 30px 0px rgba(127, 127, 127, 1);
-    border: 1px solid rgb(204, 205, 206);
+    border-radius: 80px;
+    box-shadow: 0px 10px 30px 0px var(--calculator-box-shadow);
+    border: 1px solid var(--border-color);
     margin-bottom: 5rem;
 }
 
 .calculator-screen {
-    background-color: rgb(240, 241, 242);
     border-radius: 80px 80px 0 0;
     text-align: right;
     padding: 20px 60px 20px 20px;
     height: 170px;
     margin: 0px;
-    border-bottom: 1px solid rgb(204, 205, 206);
+    border-bottom: 1px solid var(--border-color);
+}
+.calculator-screen.light-mode {
+    background-color: var(--section-bg-color);
+}
+.calculator-screen.dark-mode {
+    background-color: var(--color);
 }
 
 #previousQuestion {
-    color: gray;
     font-size: 24px;
+}
+#previousQuestion.light-mode {
+    color: var(--previous-question-color);
+}
+#previousQuestion.dark-mode {
+    color: var(--background-color);
 }
 
 #display {
@@ -140,9 +185,14 @@ input:checked+.slider:before {
 }
 
 .calculator-btns {
-    background-color: rgb(248, 249, 250);
     padding: 50px 20px 50px 20px;
     border-radius: 0px 0px 80px 80px;
+}
+.calculator-btns.lgiht-mode {
+    background-color: var(--info-background-color);
+}
+.calculator-btns.dark-mode {
+    background-color: var(--color);
 }
 
 .calculator-btns ul {
@@ -168,7 +218,7 @@ input:checked+.slider:before {
     font-size: 42px;
     border-radius: 100px;
     height: 90px;
-    background-color: rgb(248, 249, 250);
+    background-color: var(--info-background-color);
 }
 
 #zeroLi {
@@ -180,30 +230,77 @@ input:checked+.slider:before {
     height: 90px;
 }
 
-#sqrt,
-#clear,
-#open,
-#close,
-#fact,
-#power,
-#pi,
-#percent {
-    color: rgb(108, 117, 125);
-    border: solid 1px rgb(108, 117, 125);
+#sqrt.light-mode,
+#clear.light-mode,
+#open.light-mode,
+#close.light-mode,
+#fact.light-mode,
+#power.light-mode,
+#pi.light-mode,
+#percent.light-mode {
+    color: var(--calculator-other-btn-color);
+    border: solid 1px var(--calculator-other-btn-color);
+}
+#sqrt.dark-mode,
+#clear.dark-mode,
+#open.dark-mode,
+#close.dark-mode,
+#fact.dark-mode,
+#power.dark-mode,
+#pi.dark-mode,
+#percent.dark-mode {
+    color: var(--background-color);
+    background-color: var(--calculator-other-btn-color);
+    border: solid 1px var(--calculator-other-btn-color);
 }
 
-#divide,
-#multiply,
-#subtract,
-#add,
-#equal {
-    color: rgb(255, 193, 7);
-    border: 1px solid rgb(255, 193, 7);
+#divide.light-mode,
+#multiply.light-mode,
+#subtract.light-mode,
+#add.light-mode,
+#equal.light-mode {
+    color: var(--calculator-ops-btn-color);
+    border: 1px solid var(--calculator-ops-btn-color);
 }
 
-#zero, #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #decimal {
-    color: rgb(33, 37, 41);
-    border: 1px solid rgb(33, 37, 41);
+#divide.dark-mode,
+#multiply.dark-mode,
+#subtract.dark-mode,
+#add.dark-mode,
+#equal.dark-mode {
+    color: var(--color);
+    background-color: var(--calculator-ops-btn-color);
+}
+
+#zero.light-mode,
+#one.light-mode,
+#two.light-mode,
+#three.light-mode,
+#four.light-mode,
+#five.light-mode,
+#six.light-mode,
+#seven.light-mode,
+#eight.light-mode,
+#nine.light-mode,
+#decimal.light-mode {
+    color: var(--calculator-num-btn-color);
+    border: 1px solid var(--calculator-num-btn-color);
+}
+
+#zero.dark-mode,
+#one.dark-mode,
+#two.dark-mode,
+#three.dark-mode,
+#four.dark-mode,
+#five.dark-mode,
+#six.dark-mode,
+#seven.dark-mode,
+#eight.dark-mode,
+#nine.dark-mode,
+#decimal.dark-mode {
+    background-color: var(--color);
+    color: var(--background-color);
+    border: 1px solid var(--background-color);
 }
 
 
@@ -222,24 +319,30 @@ input:checked+.slider:before {
 }
 
 .history-section h3 {
-    background-color: rgb(240, 241, 242);
     margin: 0;
     padding-left: 10px;
     padding-top: 7px;
     padding-bottom: 7px;
     border-radius: 1rem 1rem 0 0;
-    border: 1px solid rgb(204, 205, 206);
+    border: 1px solid var(--border-color);
+}
+.history-section h3.light-mode {
+    background-color: var(--section-bg-color);
+    color: var(--color);
 }
 
 .history-section ul {
-    background-color: rgb(248, 249, 250);
     padding: 20px;
     margin: 0;
     border-radius: 0 0 1rem 1rem;
-    border-bottom: 1px solid rgb(204, 205, 206);
-    border-left: 1px solid rgb(204, 205, 206);
-    border-right: 1px solid rgb(204, 205, 206);
+    border-bottom: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
     margin-bottom: 1rem;
+}
+.history-section ul.light-mode {
+    background-color: var(--info-background-color);
+    color: var(--color);
 }
 
 #historyDisplay {
@@ -247,43 +350,57 @@ input:checked+.slider:before {
 }
 
 #historyDisplay li {
-    display: flex; 
+    display: flex;
     align-items: center;
-    justify-content: space-between; 
-  }
-  
-  .left-text, .right-text, .equal {
-    flex: 1; 
+    justify-content: space-between;
+}
+
+.left-text,
+.right-text,
+.equal {
+    flex: 1;
     text-align: center;
-  }
-  
-  .left-text {
+}
+
+.left-text {
     text-align: right;
-  }
-  
-  .right-text {
-    text-align: left; 
-  }
+}
+
+.right-text {
+    text-align: left;
+}
 
 #historyDisplay li:hover {
     cursor: pointer;
-    background-color: rgb(108, 117, 125);
+    background-color: var(--gray-color);
     color: white;
 }
 
 .red-btn {
     padding: 0.4rem;
-    color: #dc3545;
-    background-color: transparent;
-    border: 1px solid #dc3545;
+    border: 1px solid var(--history-btn-color);
     border-radius: 0.5rem;
     width: max-content;
 }
-
-.red-btn:hover {
-    background-color: #dc3545;
-    color: white;
+.red-btn.light-mode {
+    color: var(--history-btn-color);
+    background-color: var(--background-color);
 }
+.red-btn.dark-mode {
+    background-color: var(--history-btn-color);
+    color: var(--background-color);
+}
+
+.red-btn.light-mode:hover {
+    background-color: var(--history-btn-color);
+    color: var(--history-btn-color-hover);
+}
+.red-btn.dark-mode:hover {
+    background-color: var(--color);
+    color: var(--background-color);
+    border-color: var(--background-color);
+}
+
 
 @media screen and (max-width: 1200px) {
     .history-section {
