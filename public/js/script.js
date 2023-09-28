@@ -244,10 +244,8 @@ const calculateEquation = (equation) => {
                 continue;
             } else if (currNum != "") {
                 numbers.push(parseFloat(currNum));
-            }
-
-            if (char === piSym) {
-                numbers.push(Math.PI);
+            } else if (char == piSym) {
+                currNum += Math.PI;
                 continue;
             }
 
