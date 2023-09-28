@@ -1,5 +1,32 @@
 import { calculateEquation } from './script';
 
+describe("Square root", () => {
+    test('"√(9)" should result in 3', () => {
+        expect(calculateEquation("√(9)")).toBe(3);
+    });
+    test('"√(4)" should result in 2', () => {
+        expect(calculateEquation("√(4)")).toBe(2);
+    });
+    test('"√(1)" should result in 1', () => {
+        expect(calculateEquation("√(1)")).toBe(1);
+    });
+    test('"√(0)" should result in 0', () => {
+        expect(calculateEquation("√(0)")).toBe(0);
+    });
+    test('"√(-4)" should result in Error: Negative square root', () => {
+        expect(calculateEquation("√(-4)")).toBe("Error: Negative square root");
+    });
+    test('"√(2)" should result in 1.4142135624', () => {
+        expect(calculateEquation("√(2)")).toBe(1.4142135624);
+    });
+    test('"√(0.4)" should result in 0.632455532', () => {
+      expect(calculateEquation("√(0.4)")).toBe(0.632455532);
+    });
+    test('"√(-(-4))" should result in 2', () => {
+      expect(calculateEquation("√(-(-4))")).toBe(2);
+    });
+});
+
 describe("Addition", () => {
     test('"2+3" should result in 5', () => {
         expect(calculateEquation("2+3")).toBe(5);

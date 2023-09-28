@@ -271,7 +271,10 @@ const calculateEquation = (equation) => {
 
                 if (bracketAnswer.includes("Error")) {
                     return bracketAnswer;
+                } else if(bracketAnswer < 0){
+                    return "Error: Negative square root";
                 }
+                
 
                 numbers.push(Math.sqrt(parseFloat(bracketAnswer)));
 
