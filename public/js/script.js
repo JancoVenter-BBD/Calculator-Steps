@@ -673,6 +673,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         if(!displayVal.includes(".")){
                             displayVal += value;
                         }
+                    } else if (displayVal[displayVal.length - 1] === "%" && !isNaN(value)) {
+                        displayVal += "×" + value;
                     }
                     else {
                         // add the character to the display
