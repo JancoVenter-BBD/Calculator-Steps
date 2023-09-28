@@ -143,6 +143,64 @@ describe("Ensures the number cannot have 2 periods", () => {
   });
 });
 
+describe("Typing a number after a percentage", () => {
+  it("Enter a number after a percentage", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#seven").click();
+    cy.get("#percent").click();
+    cy.get("#five").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("0.85").should((elem) => {
+      expect(elem.text()).to.equal('0.85');
+    });
+  });
+
+  it("Enter an operation after a percentage", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#seven").click();
+    cy.get("#percent").click();
+    cy.get("#add").click();
+    cy.get("#two").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("2.17").should((elem) => {
+      expect(elem.text()).to.equal('2.17');
+    })
+  });
+})
+
+describe("Typing a number after a percentage", () => {
+  it("Enter a number after a percentage", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#seven").click();
+    cy.get("#percent").click();
+    cy.get("#five").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("0.85").should((elem) => {
+      expect(elem.text()).to.equal('0.85');
+    });
+  });
+
+  it("Enter an operation after a percentage", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#seven").click();
+    cy.get("#percent").click();
+    cy.get("#add").click();
+    cy.get("#two").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("2.17").should((elem) => {
+      expect(elem.text()).to.equal('2.17');
+    })
+  });
+})
+
 describe("Checks dark mode switch", () => {
   it("Checks initial background colour", () => {
     cy.visit("localhost:3000");
