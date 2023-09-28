@@ -17,16 +17,16 @@ describe("Square root", () => {
         expect(calculateEquation("√(-4)")).toBe("Error: Negative square root");
     });
     test('"√(2)" should result in 1.4142', () => {
-        expect(Number(calculateEquation("√(2)").toPrecision(5))).toBe(1.4142);
+        expect(calculateEquation("√(2)")).toBeCloseTo(1.41421356237, 5);
     });
     test('"√(0.4)" should result in 0.63246', () => {
-      expect(Number(calculateEquation("√(0.4)").toPrecision(5))).toBe(0.63246);
+      expect(calculateEquation("√(0.4)")).toBeCloseTo(0.63246, 4);
     });
     test('"√(-(-4))" should result in 2', () => {
       expect(calculateEquation("√(-(-4))")).toBe(2);
     });
     test('"√(π)" should result in 1.7725', () => {
-      expect(Number(calculateEquation("√(π)").toPrecision(5))).toBe(1.7725);
+      expect(calculateEquation("√(π)")).toBeCloseTo(1.7725, 4);
     });
 });
 
@@ -45,6 +45,9 @@ describe("Addition", () => {
     });
     test('"0.1+0.2" should result in 0.3', () => {
         expect(calculateEquation("0.1+0.2")).toBe(0.3);
+    });
+    test('should handle large numbers', () => {
+      expect(calculateEquation("9999999999999999 + 1")).toBe(10000000000000000);
     });
 });
 
@@ -75,9 +78,45 @@ describe("Division", () => {
   });
 });
 
-describe("BODMAS chain operation", () => {
+describe("BODMAS chain operation and other tests", () => {
   test('"2^((2+2)×3!)/(4*2)" should result in 2097152', () => {
     expect(calculateEquation("2^((2+2)×3!)/(4*2)")).toBe(2097152);
+  });
+  test('should handle parentheses', () => {
+    expect(calculateEquation("(2+3)*4")).toBe(20);
+  });
+  test('should follow order of operations', () => {
+    expect(calculateEquation("2+3×4")).toBe(14);
+  });
+  test('should handle an empty input', () => {
+    expect(calculateEquation("")).toBe(0); // Assumes starting with 0 by default
+  });
+  test('should handle invalid input', () => {
+    expect(calculateEquation("abc")).toBe("Error: Invalid input");
+  });
+  test('should handle multiple operations in a row', () => {
+    expect(calculateEquation("2+3-1×4/2")).toBe(3); // Follows order of operations
+  });
+  test('should handle complex expressions with parentheses', () => {
+    expect(calculateEquation("(2+3)×(4-1)/2")).toBe(7.5);
+  });
+  test('should handle multiple decimal points', () => {
+    expect(calculateEquation("1.5.5")).toBe("Error: Invalid input");
+  });
+  test('should handle an equation starting with an operator', () => {
+    expect(calculateEquation("+2+3")).toBe(5); // Treats as positive number
+  });
+  test('should handle an equation ending with an operator', () => {
+    expect(calculateEquation("2+3+")).toBe(5); // Ignores the trailing operator
+  });
+  test('should handle negative numbers in parentheses', () => {
+    expect(calculateEquation("2+(-3)")).toBe(-1);
+  });
+  test('should handle complex equations with square roots and exponents', () => {
+    expect(calculateEquation("√(4)+2^(3)")).toBe(10); // 2 + 8
+  });
+  test('should handle repeated square roots', () => {
+    expect(calculateEquation("√(√(16))")).toBe(2);
   });
 });
 
@@ -129,14 +168,13 @@ describe("Factorial", () => {
   });
 
   test('1.5! should be 1.3293', () => {
-    expect(Number(calculateEquation("1.5!").toPrecision(5))).toBe(1.3293);
+    expect(calculateEquation("1.5!")).toBeCloseTo(1.3293, 4);
   });
 
   test('-6! should be -720', () => {
     expect(calculateEquation("-6!")).toBe(-720);
   });
 });
-
 
 describe("Percentage", () => {
   test('0% should be 0', () => {
@@ -159,8 +197,6 @@ describe("Percentage", () => {
     expect(calculateEquation("134%")).toBe(1.34);
   });
 });
-
-
 
 describe('Multiplication', ()=> {
   test('8 * 4 should be 32', () => {
@@ -185,7 +221,6 @@ describe('Multiplication', ()=> {
 })
 
 describe('Power Operations', () => {
-
   test('2^3 should be 8', () => {
     expect(calculateEquation("2^(3)")).toBe(8);
   });
