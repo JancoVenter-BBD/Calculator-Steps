@@ -17,7 +17,7 @@ describe("Square root", () => {
         expect(calculateEquation("√(-4)")).toBe(NaN);
     });
     test('"√(2)" should result in 1.414', () => {
-        expect(calculateEquation("√(2)")).toBe(1.414);
+        expect(calculateEquation("√(2)")).toBe(1.4142135624);
     });
 });
 
