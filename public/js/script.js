@@ -560,6 +560,12 @@ document.addEventListener("keydown", (event) => {
         if (event.key === "!") {
             displayVal += "!";
         }
+
+        if (event.key == "," || event.key == "."){
+            if(!displayVal.includes(".")){
+                displayVal += ".";
+            }
+        }
     }
 
     document.getElementById("display").innerHTML = formatOutput(displayVal + "");
