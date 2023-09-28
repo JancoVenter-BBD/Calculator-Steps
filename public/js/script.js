@@ -413,7 +413,7 @@ function storeHistory(question, answer) {
     }
     let tmpItem = `{
         "question": "${question}",
-        "answer": ${removeTrailingZeroes(answer)}
+        "answer": ${answer}
     }`;
     history.push(JSON.parse(tmpItem));
     localStorage.setItem("history", JSON.stringify(history));
