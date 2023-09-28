@@ -171,102 +171,27 @@ function showError(msg) {
 
 // themeToggle function to switch betweeen light and dark mode
 function toggleTheme() {
-    let card = document.getElementsByClassName("card");
-    // check if card container class text-bg-dark
-    for(const element of card){
-        if (element.classList.contains("text-bg-dark")) {
-            // remove class text-bg-dark
-            element.classList.remove("text-bg-dark");
-            // add class text-bg-light
-            element.classList.add("text-bg-light");
-        } else {
-            // remove class text-bg-light
-            element.classList.remove("text-bg-light");
-            // add class text-bg-dark
-            element.classList.add("text-bg-dark");
+    if (document.getElementsByClassName("light-mode").length > 0) {
+        const lightModeCollection = document.getElementsByClassName("light-mode");
+        for (let i = 0; i < lightModeCollection.length; i++) {
+            lightModeCollection[i].classList.add("dark-mode");
+        }
+
+        const darkModeCollection = document.getElementsByClassName("dark-mode");
+        for (let i = 0; i < darkModeCollection.length; i++) {
+            darkModeCollection[i].classList.remove("light-mode");
         }
     }
 
-    let historyDisplay = document.getElementById("historyDisplay");
-    if(historyDisplay.classList.contains("dark")){
-        historyDisplay.classList.remove("dark");
-
-        // store theme selection in localStorage
-        localStorage.setItem("theme", "light");
-    } else {
-        historyDisplay.classList.add("dark");
-
-        // store theme selection in localStorage
-        localStorage.setItem("theme", "dark");
-    }
-
-    // if header has class lightHeader, replace with darkHeader
-    let header = document.getElementById("header");
-    if (header.classList.contains("lightHeader")) {
-        header.classList.remove("lightHeader");
-        header.classList.add("darkHeader");
-
-        // set body background to dark
-        document.body.style.backgroundColor = "black";
-
-        // set themeLabel text color to white
-        document.getElementById("themeLabel").style.color = "white";
-
-    } else {
-        header.classList.remove("darkHeader");
-        header.classList.add("lightHeader");
-
-        // set body backgroud to light
-        document.body.style.backgroundColor = "white";
-
-        // set themeLabel text color to black
-        document.getElementById("themeLabel").style.color = "black";
-    }
-
-    // get all buttons
-    let btns = document.getElementsByClassName("btn");
-    // loop through the buttons
-    for (const element of btns) {
-        // check if button contains btn-outline-secondary class
-        if (element.classList.contains("btn-outline-secondary")) {
-            // remove class btn-outline-secondary
-            element.classList.remove("btn-outline-secondary");
-            // add class btn-secondary
-            element.classList.add("btn-secondary");
-        } else if (element.classList.contains("btn-secondary")) {
-            // remove class btn-secondary
-            element.classList.remove("btn-secondary");
-            // add class btn-outline-secondary
-            element.classList.add("btn-outline-secondary");
-        } else if (element.classList.contains("btn-outline-warning")) {
-            // remove class btn-outline-warning
-            element.classList.remove("btn-outline-warning");
-            // add class btn-warning
-            element.classList.add("btn-warning");
-        } else if (element.classList.contains("btn-warning")) {
-            // remove class btn-warning
-            element.classList.remove("btn-warning");
-            // add class btn-outline-warning
-            element.classList.add("btn-outline-warning");
-        } else if (element.classList.contains("btn-outline-dark")) {
-            // remove class btn-outline-dark
-            element.classList.remove("btn-outline-dark");
-            // add class btn-dark
-            element.classList.add("btn-outline-light");
-        } else if (element.classList.contains("btn-outline-light")) {
-            // remove class btn-dark
-            element.classList.remove("btn-outline-light");
-            // add class btn-outline-dark
-            element.classList.add("btn-outline-dark");
+    else {
+        const darkModeCollection = document.getElementsByClassName("dark-mode");
+        for (let i = 0; i < darkModeCollection.length; i++) {
+            darkModeCollection[i].classList.add("light-mode");
         }
-    }
 
-    let listItems = document.getElementsByClassName("list-group-item");
-    for(const element of listItems){
-        if(element.classList.contains("list-group-item-dark")){
-            element.classList.remove("list-group-item-dark");
-        } else {
-            element.classList.add("list-group-item-dark");
+        const lightModeCollection = document.getElementsByClassName("light-mode");
+        for (let i = 0; i < lightModeCollection.length; i++) {
+            lightModeCollection[i].classList.remove("dark-mode");
         }
     }
 }
