@@ -161,7 +161,7 @@ describe('Multiplication', ()=> {
 describe('Power Operations', () => {
 
   test('2^3 should be 8', () => {
-    expect(calculateEquation("2**3")).toBe(8);
+    expect(calculateEquation("2^(3)")).toBe(8);
   });
 
   test('Negative exponent: 2^-3 should be 0.125', () => {
@@ -169,15 +169,15 @@ describe('Power Operations', () => {
   });
 
   test('Base 0: 0^5 should be 0', () => {
-    expect(calculateEquation("0**5")).toBe(0);
+    expect(calculateEquation("0^(5)")).toBe(0);
   });
 
   test('Exponent 0: 7^0 should be 1', () => {
-    expect(calculateEquation("7**0")).toBe(1);
+    expect(calculateEquation("7^(0)")).toBe(1);
   });
 
   test('Decimal base: 1.5^2 should be 2.25', () => {
-    expect(calculateEquation("1.5**2")).toBe(2.25);
+    expect(calculateEquation("1.5^(2)")).toBe(2.25);
   });
 
 });
