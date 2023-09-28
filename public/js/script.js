@@ -632,6 +632,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     if (value == "-" && displayVal == "0") {
                         displayVal = value;
+                    } else if(value == "."){
+                        if(!displayVal.includes(".")){
+                            displayVal += value;
+                        }
                     }
                     else {
                         // add the character to the display
