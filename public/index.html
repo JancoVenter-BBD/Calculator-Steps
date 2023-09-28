@@ -16,7 +16,7 @@
     <script src="js/script.js"></script>
 </head>
 
-<body>
+<body class="light-mode">
     <h1 class="" id="header">JavaScript Calculator</h1>
     <br />
 
@@ -29,36 +29,36 @@
     </form>
 
     <section class="calculator-section">
-        <article class="calculator-screen">
-            <p id="previousQuestion"></p>
+        <article class="calculator-screen light-mode">
+            <p id="previousQuestion" class="light-mode"></p>
             <p id="display">0</p>
         </article>
-        <article class="calculator-btns">
+        <article class="calculator-btns light-mode">
             <ul class="card-body">
-                <li><button id="sqrt" data-value="sqrt">&radic;</button></li>
-                <li><button id="clear" data-value="clear">AC</button></li>
-                <li><button id="open" data-value="(">(</button></li>
-                <li><button id="close" data-value=")">)</button></li>
-                <li><button id="divide" data-value="÷">÷</button></li>
-                <li><button id="fact" data-value="!">!</button></li>
-                <li><button id="seven" data-value="7">7</button></li>
-                <li><button id="eight" data-value="8">8</button></li>
-                <li><button id="nine" data-value="9">9</button></li>
-                <li><button id="multiply" data-value="×">×</button></li>
-                <li><button id="power" data-value="^">x<sup>y</sup></button></li>
-                <li><button id="four" data-value="4">4</button></li>
-                <li><button id="five" data-value="5">5</button></li>
-                <li><button id="six" data-value="6">6</button></li>
-                <li><button id="subtract" data-value="-">-</button></li>
-                <li><button id="pi" data-value="π">π</button></li>
-                <li><button id="one" data-value="1">1</button></li>
-                <li><button id="two" data-value="2">2</button></li>
-                <li><button id="three" data-value="3">3</button></li>
-                <li><button id="add" data-value="+">+</button></li>
-                <li><button id="percent" data-value="%">%</button></li>
-                <li id="zeroLi"><button id="zero" data-value="0">0</button></li>
-                <li><button id="decimal" data-value=".">.</button></li>
-                <li><button id="equal" data-value="=">=</button></li>
+                <li><button id="sqrt" class="light-mode" data-value="sqrt">&radic;</button></li>
+                <li><button id="clear" class="light-mode" data-value="clear">AC</button></li>
+                <li><button id="open" class="light-mode" data-value="(">(</button></li>
+                <li><button id="close" class="light-mode" data-value=")">)</button></li>
+                <li><button id="divide" class="light-mode" data-value="÷">÷</button></li>
+                <li><button id="fact" class="light-mode" data-value="!">!</button></li>
+                <li><button id="seven" class="light-mode" data-value="7">7</button></li>
+                <li><button id="eight" class="light-mode" data-value="8">8</button></li>
+                <li><button id="nine" class="light-mode" data-value="9">9</button></li>
+                <li><button id="multiply" class="light-mode" data-value="×">×</button></li>
+                <li><button id="power" class="light-mode" data-value="^">x<sup>y</sup></button></li>
+                <li><button id="four" class="light-mode" data-value="4">4</button></li>
+                <li><button id="five" class="light-mode" data-value="5">5</button></li>
+                <li><button id="six" class="light-mode" data-value="6">6</button></li>
+                <li><button id="subtract" class="light-mode" data-value="-">-</button></li>
+                <li><button id="pi" class="light-mode" data-value="π">π</button></li>
+                <li><button id="one" class="light-mode" data-value="1">1</button></li>
+                <li><button id="two" class="light-mode" data-value="2">2</button></li>
+                <li><button id="three" class="light-mode" data-value="3">3</button></li>
+                <li><button id="add" class="light-mode" data-value="+">+</button></li>
+                <li><button id="percent" class="light-mode" data-value="%">%</button></li>
+                <li id="zeroLi"><button id="zero" class="light-mode" data-value="0">0</button></li>
+                <li><button id="decimal" class="light-mode" data-value=".">.</button></li>
+                <li><button id="equal" class="light-mode" data-value="=">=</button></li>
             </ul>
         </article>
     </section>
@@ -66,9 +66,9 @@
     <br/>
 
     <section class="history-section">
-        <h3>History</h3>
-        <ul id="historyDisplay"></ul>
-        <button id="clearBtn" class="red-btn" onclick="clearHistory()">Clear History</button>
+        <h3 class="light-mode">History</h3>
+        <ul id="historyDisplay" class="light-mode"></ul>
+        <button id="clearBtn" class="red-btn light-mode" onclick="clearHistory()">Clear History</button>
     </section>
 </body>
 
