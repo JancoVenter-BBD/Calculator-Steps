@@ -98,6 +98,14 @@ describe("Factorial", () => {
   test('5! should be 120', () => {
     expect(calculateEquation("5!")).toBe(120);
   });
+
+  test('1.5! should be 1.3293', () => {
+    expect(Number(calculateEquation("1.5!").toPrecision(5))).toBe(1.3293);
+  });
+
+  test('-6! should be -720', () => {
+    expect(calculateEquation("-6!")).toBe(-720);
+  });
 });
 
 
