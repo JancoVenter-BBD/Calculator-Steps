@@ -1,5 +1,5 @@
-describe("Page Loads and buttons present", () => {
-  it("Visits the calculator", () => {
+describe("Page Loads and buttons working", () => {
+  it("Visits the calculator and checks for buttons", () => {
     cy.visit("localhost:3000");
     for (let i = 0; i < 10; i++) {
       cy.get(".card-body").contains(i.toString());
@@ -22,6 +22,8 @@ describe("Page Loads and buttons present", () => {
       cy.get(".card-body").contains(customChars[c]);
     }
   });
+
+  it ()
 });
 
 describe("Enter a calculation and observe results and history", () => {
@@ -33,11 +35,15 @@ describe("Enter a calculation and observe results and history", () => {
     cy.get("#one").click();
     cy.get("#equal").click();
 
-    cy.get("#display").contains("2");
+    cy.get("#display").contains("2").should((elem) => {
+      expect(elem.text()).to.equal('2');
+    });
 
     cy.get("#clear").click();
 
-    cy.get("#display").contains("0");
+    cy.get("#display").contains("0").should((elem) => {
+      expect(elem.text()).to.equal('0');
+    });
   });
 
   it("Checks history logs 1+1=2 to history, and clears", () => {
@@ -48,8 +54,12 @@ describe("Enter a calculation and observe results and history", () => {
     cy.get("#one").click();
     cy.get("#equal").click();
 
-    cy.get("#historyDisplay").contains("1+1");
-    cy.get("#historyDisplay").contains("2");
+    cy.get("#historyDisplay").contains("1+1").should((elem) => {
+      expect(elem.text()).to.equal('1+1');
+    });
+    cy.get("#historyDisplay").contains("2").should((elem) => {
+      expect(elem.text()).to.equal('2');
+    });
 
     cy.get("#clearBtn").click();
 
@@ -68,7 +78,9 @@ describe("Enter a calculation and observe results and history", () => {
 
     cy.get('.list-group-item[question="1+1"]').click();
 
-    cy.get("#display").contains("2");
+    cy.get("#display").contains("2").should((elem) => {
+      expect(elem.text()).to.equal('2');
+    });
   });
 });
 
