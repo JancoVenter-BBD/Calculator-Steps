@@ -550,6 +550,10 @@ document.addEventListener("keydown", (event) => {
             if (displayVal == "0") {
                 displayVal = "";
             }
+            else if (displayVal[displayVal.length - 1] === "%") {
+                // check if value after percentage 
+                displayVal += "×";
+            }
             displayVal += event.key;
         }
         //check if key is *
@@ -674,6 +678,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             displayVal += value;
                         }
                     } else if (displayVal[displayVal.length - 1] === "%" && !isNaN(value)) {
+                        // if value after percentage
                         displayVal += "×" + value;
                     }
                     else {
