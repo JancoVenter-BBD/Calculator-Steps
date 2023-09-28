@@ -21,7 +21,10 @@ describe("Square root", () => {
     });
     test('"√(0.4)" should result in 0.632455532', () => {
       expect(calculateEquation("√(0.4)")).toBe(0.632455532);
-  });
+    });
+    test('"√(-(-4))" should result in 2', () => {
+      expect(calculateEquation("√(-(-4))")).toBe(2);
+    });
 });
 
 describe("Addition", () => {
