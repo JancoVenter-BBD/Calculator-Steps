@@ -71,3 +71,13 @@ describe("Enter a calculation and observe results and history", () => {
     cy.get("#display").contains("2");
   });
 });
+
+describe("Keystrokes are registered correctly", () => {
+  it("Enters a calculation and checks the display", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("3*3*10{enter}");
+    cy.get("#display").contains("90").should((elem) => {
+      expect(elem.text()).to.equal('90');
+    });
+  });
+});
