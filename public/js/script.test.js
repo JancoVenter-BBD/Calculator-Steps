@@ -133,3 +133,51 @@ describe("Percentage", () => {
     expect(calculateEquation("134%")).toBe(1.34);
   });
 });
+
+
+
+describe('Multiplication', ()=> {
+  test('8 * 4 should be 32', () => {
+    expect(calculateEquation("8 * 4")).toBe(32);
+  })
+
+  test('-4 * 3 should be -12', () => {
+    expect(calculateEquation("-4 * 3")).toBe(-12);
+  })
+
+  test('0 * 5 should be 0', () => {
+    expect(calculateEquation("0 * 5")).toBe(0);
+  });
+
+  test('-3 * -5 should be 15', () => {
+    expect(calculateEquation("-3*-5")).toBe(15);
+  });
+
+  test(' 2.5 * 3.5 should be 8.75', () => {
+    expect(calculateEquation("2.5 * 3.5")).toBe(8.75);
+  });
+})
+
+describe('Power Operations', () => {
+
+  test('2^3 should be 8', () => {
+    expect(calculateEquation("2^(3)")).toBe(8);
+  });
+
+  test('Negative exponent: 2^-3 should be 0.125', () => {
+    expect(calculateEquation("2^(-3)")).toBe(0.125);
+  });
+
+  test('Base 0: 0^5 should be 0', () => {
+    expect(calculateEquation("0^(5)")).toBe(0);
+  });
+
+  test('Exponent 0: 7^0 should be 1', () => {
+    expect(calculateEquation("7^(0)")).toBe(1);
+  });
+
+  test('Decimal base: 1.5^2 should be 2.25', () => {
+    expect(calculateEquation("1.5^(2)")).toBe(2.25);
+  });
+
+});
