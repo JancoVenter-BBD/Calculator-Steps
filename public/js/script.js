@@ -502,12 +502,13 @@ document.addEventListener("keydown", (event) => {
     }
     // check if the key is "Enter"
     if (event.key === "Enter") {
-        // evaluate the expression
         let tmpQ = displayVal;
-        displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
+        displayVal = calculateEquation(displayVal) + "";
         if (displayVal.includes("Error")) {
             showError(displayVal);
             return;
+        } else {
+            displayVal = removeTrailingZeroes(Number(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
         }
         storeHistory(tmpQ, displayVal);
     } else if (event.key === "Backspace") {
@@ -519,12 +520,13 @@ document.addEventListener("keydown", (event) => {
             displayVal = displayVal.substring(0, displayVal.length - 1);
         }
     } else if (event.key === "=") {
-        // evaluate the expression
         let tmpQ = displayVal;
-        displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
+        displayVal = calculateEquation(displayVal) + "";
         if (displayVal.includes("Error")) {
             showError(displayVal);
             return;
+        } else {
+            displayVal = removeTrailingZeroes(Number(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
         }
         storeHistory(tmpQ, displayVal);
     } else if (event.key == "+") {
@@ -661,10 +663,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 case "=":
                     // evaluate the expression
                     let tmpQ = displayVal;
-                    displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
+                    displayVal = calculateEquation(displayVal) + "";
                     if (displayVal.includes("Error")) {
                         showError(displayVal);
                         return;
+                    } else {
+                        displayVal = removeTrailingZeroes(Number(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
                     }
                     storeHistory(tmpQ, displayVal);
                     break;
