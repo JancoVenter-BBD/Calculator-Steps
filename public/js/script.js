@@ -197,7 +197,7 @@ function toggleTheme() {
 }
 
 // Function to evaluate a string equation using bodmas
-function calculateEquation(equation) {
+const calculateEquation = (equation) => {
     // show the equation above answer
     document.getElementById("previousQuestion").innerHTML = document.getElementById("display").innerHTML + " = ";
 
@@ -406,7 +406,7 @@ function loadHistory() {
 }
 
 // Function to clear history from LocalStorage
-function clearHistory(){
+const clearHistory = () => {
     localStorage.removeItem("history");
     document.getElementById("historyDisplay").innerHTML = "<p>No history</p>";;
 }
@@ -601,3 +601,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+export { calculateEquation, clearHistory };
