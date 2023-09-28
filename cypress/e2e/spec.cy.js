@@ -170,6 +170,19 @@ describe("Typing a number after a percentage", () => {
       expect(elem.text()).to.equal('2.17');
     })
   });
+})
+
+describe("Checks dark mode switch", () => {
+  it("Checks initial background colour", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").should("have.css", "background-color", "rgb(255, 255, 255)");
+  });
+
+  it("Selects dark mode and checks background colour", () => {
+    cy.visit("localhost:3000");
+    cy.get('span.slider.round').click()
+    cy.get("body").should("have.css", "background-color", "rgb(33, 37, 41)");
+  });
 });
 
 describe("BODMAS and other tests from button press", () => {
