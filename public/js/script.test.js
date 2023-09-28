@@ -91,6 +91,9 @@ describe("BODMAS chain operation and other tests", () => {
   test('should handle an empty input', () => {
     expect(calculateEquation("")).toBe(0); // Assumes starting with 0 by default
   });
+  test('should handle invalid input', () => {
+    expect(calculateEquation("abc")).toBe("Error: Invalid input");
+  });
   test('should handle multiple operations in a row', () => {
     expect(calculateEquation("2+3-1×4/2")).toBe(3); // Follows order of operations
   });

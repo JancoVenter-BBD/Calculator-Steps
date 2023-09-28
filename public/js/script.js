@@ -76,6 +76,16 @@ function preprocess(equation) {
     equation = equation.replace(/×/g, multSym);
     equation = equation.replace(/÷/g, slashSym);
 
+    // if contains letters 
+    if (equation.match(/[a-zA-Z]/g)) {
+        return "Error: Invalid input";
+    }
+
+    // if contains multiple decimals 
+    if (/\.\d*\./.test(equation)) {
+        return "Error: Invalid input";
+    }
+
     // if starts with +, then add a 0
     if (equation[0] === "+") {
         equation = "0" + equation;
