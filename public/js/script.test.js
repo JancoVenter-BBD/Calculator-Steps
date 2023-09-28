@@ -25,6 +25,9 @@ describe("Square root", () => {
     test('"√(-(-4))" should result in 2', () => {
       expect(calculateEquation("√(-(-4))")).toBe(2);
     });
+    test('"√(π)" should result in 1.7725', () => {
+      expect(Number(calculateEquation("√(π)").toPrecision(5))).toBe(1.7725);
+    });
 });
 
 describe("Addition", () => {
