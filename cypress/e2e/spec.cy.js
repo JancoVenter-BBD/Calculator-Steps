@@ -323,6 +323,71 @@ describe("BODMAS and other tests from button press", () => {
   });
 });
 
+describe("BODMAS and other tests from keystrokes", () => {
+  it("2^((2+2)×3!)/(4*2) should result in 2097152", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2^(2+2)×3!)/(4*2){enter}");
+
+    cy.get("#display").contains("2097152").should((elem) => {
+      expect(elem.text()).to.equal('2097152');
+    });
+  });
+
+  it("should handle parentheses", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("(2+3)*4{enter}");
+
+    cy.get("#display").contains("20").should((elem) => {
+      expect(elem.text()).to.equal('20');
+    });
+  });
+
+  it("should follow order of operations", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2+3*4{enter}");
+
+    cy.get("#display").contains("14").should((elem) => {
+      expect(elem.text()).to.equal('14');
+    });
+  });
+
+  it("should handle multiple operations in a row", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2+3-1*4/2{enter}");
+
+    cy.get("#display").contains("3").should((elem) => {
+      expect(elem.text()).to.equal('3');
+    });
+  });
+
+  it("should handle an equation starting with an operator", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("+2+3{enter}");
+
+    cy.get("#display").contains("5").should((elem) => {
+      expect(elem.text()).to.equal('5');
+    });
+  });
+
+  it("should handle an equation ending with an operator", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2+3+{enter}");
+
+    cy.get("#display").contains("5").should((elem) => {
+      expect(elem.text()).to.equal('5');
+    });
+  });
+
+  it("should handle negative numbers in parentheses", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2+(-3){enter}");
+
+    cy.get("#display").contains("-1").should((elem) => {
+      expect(elem.text()).to.equal('-1');
+    });
+  });
+});
+
 describe("Subtraction from button press", () => {
   it("5-5 should result in 0", () => {
     cy.visit("localhost:3000");
