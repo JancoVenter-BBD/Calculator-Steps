@@ -1054,6 +1054,153 @@ describe("Percentage from button press", () => {
   });
 });
 
+describe("Factorial from keystroke", () => {
+  it("0! should be 1", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("0!{enter}");
+
+    cy.get("#display").contains("1").should((elem) => {
+      expect(elem.text()).to.equal('1');
+    });
+  });
+
+  it("1! should be 1", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("1!{enter}");
+
+    cy.get("#display").contains("1").should((elem) => {
+      expect(elem.text()).to.equal('1');
+    });
+  });
+
+  it("2! should be 2", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2!{enter}");
+
+    cy.get("#display").contains("2").should((elem) => {
+      expect(elem.text()).to.equal('2');
+    });
+  });
+
+  it("3! should be 6", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("3!{enter}");
+
+    cy.get("#display").contains("6").should((elem) => {
+      expect(elem.text()).to.equal('6');
+    });
+  });
+
+  it("5! should be 120", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("5!{enter}");
+
+    cy.get("#display").contains("120").should((elem) => {
+      expect(elem.text()).to.equal('120');
+    });
+  });
+
+  it("1.5! should be 1.3293", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("1.5!{enter}");
+
+    cy.get("#display").contains("1.3293").should((elem) => {
+      expect(Number(elem.text())).to.be.closeTo(1.3293, 4);
+    });
+  });
+
+  it("-6! should be -720", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("-6!{enter}");
+
+    cy.get("#display").contains("-720").should((elem) => {
+      expect(elem.text()).to.equal('-720');
+    });
+  });
+});
+
+describe("Factorial from button press", () => {
+  it("0! should be 1", () => {
+    cy.visit("localhost:3000");
+    cy.get("#zero").click();
+    cy.get("#fact").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("1").should((elem) => {
+      expect(elem.text()).to.equal('1');
+    });
+  });
+
+  it("1! should be 1", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#fact").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("1").should((elem) => {
+      expect(elem.text()).to.equal('1');
+    });
+  });
+
+  it("2! should be 2", () => {
+    cy.visit("localhost:3000");
+    cy.get("#two").click();
+    cy.get("#fact").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("2").should((elem) => {
+      expect(elem.text()).to.equal('2');
+    });
+  });
+
+  it("3! should be 6", () => {
+    cy.visit("localhost:3000");
+    cy.get("#three").click();
+    cy.get("#fact").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("6").should((elem) => {
+      expect(elem.text()).to.equal('6');
+    });
+  });
+
+  it("5! should be 120", () => {
+    cy.visit("localhost:3000");
+    cy.get("#five").click();
+    cy.get("#fact").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("120").should((elem) => {
+      expect(elem.text()).to.equal('120');
+    });
+  });
+
+  it("1.5! should be 1.3293", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#decimal").click();
+    cy.get("#five").click();
+    cy.get("#fact").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("1.3293").should((elem) => {
+      expect(Number(elem.text())).to.be.closeTo(1.3293, 4);
+    });
+  });
+
+  it("-6! should be -720", () => {
+    cy.visit("localhost:3000");
+    cy.get("#subtract").click();
+    cy.get("#six").click();
+    cy.get("#fact").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("-720").should((elem) => {
+      expect(elem.text()).to.equal('-720');
+    });
+  });
+});
+
 describe("Percentage from keyboard press", () => {
   it("0% should result in 0", () => {
     cy.visit("localhost:3000");
