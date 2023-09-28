@@ -13,12 +13,10 @@ let displayVal = "0";
 
 // Function to format the output to display to the user
 function formatOutput(string) {
-    console.log(string);
     if (string.includes(sqrtSym)) {
         for (let i = 0; i < string.length; i++) {
             if (string[i] === sqrtSym) {
                 let endIndex = getIndexOfClosingBracket(string, i+2);
-                console.log(`endIndex: ${endIndex}`);
                 if (endIndex !== -1) {
                     string = string.substring(0, i+1) + "<span class='sqrt'>" + string.substring(i+2, endIndex) + "</span>" + string.substring(endIndex+1);
                 } else {
@@ -557,7 +555,6 @@ document.addEventListener("keydown", (event) => {
 
 // Main DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("[INFO] DOMContentLoaded");
     localStorage.clear();
 
     // get stored theme from LocalStorage
