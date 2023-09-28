@@ -372,18 +372,18 @@ describe("Division from button press", () => {
     });
   });
 
-  // it("10/0 should result in an error", () => {
-  //   cy.visit("localhost:3000");
-  //   cy.get("#one").click();
-  //   cy.get("#zero").click();
-  //   cy.get("#divide").click();
-  //   cy.get("#one").click();
-  //   cy.get("#equal").click();
+  it("10/0 should result in an error", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#zero").click();
+    cy.get("#divide").click();
+    cy.get("#one").click();
+    cy.get("#equal").click();
 
-  //   cy.get("#display").contains("Error: Division by zero").should((elem) => {
-  //     expect(elem.text()).to.equal("Error: Division by zero");
-  //   });
-  // });
+    cy.get("#display").contains("Error: Division by zero").should((elem) => {
+      expect(elem.text()).to.equal("Error: Division by zero");
+    });
+  });
 
   it("2.5/5 should result in 0.5", () => {
     cy.visit("localhost:3000");
@@ -609,6 +609,53 @@ describe("Power from button press", () => {
     cy.get("#two").click();
     cy.get("#close").click();
     cy.get("#equal").click();
+
+    cy.get("#display").contains("2.25").should((elem) => {
+      expect(elem.text()).to.equal('2.25');
+    });
+  });
+});
+
+describe("Power from keystroke press", () => {
+  it("2^3 should result in 8", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2^3){enter}");
+
+    cy.get("#display").contains("8").should((elem) => {
+      expect(elem.text()).to.equal('8');
+    });
+  });
+
+  it("2^-3 should result in 0.125", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("2^-3){enter}");
+
+    cy.get("#display").contains("0.125").should((elem) => {
+      expect(elem.text()).to.equal('0.125');
+    });
+  });
+
+  it("0^5 should result in 0", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("0^5){enter}");
+
+    cy.get("#display").contains("0").should((elem) => {
+      expect(elem.text()).to.equal('0');
+    });
+  });
+
+  it("7^0 should result in 1", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("7^0){enter}");
+
+    cy.get("#display").contains("1").should((elem) => {
+      expect(elem.text()).to.equal('1');
+    });
+  });
+
+  it("1.5^2 should result in 2.25", () => {
+    cy.visit("localhost:3000");
+    cy.get("body").type("1.5^2){enter}");
 
     cy.get("#display").contains("2.25").should((elem) => {
       expect(elem.text()).to.equal('2.25');
