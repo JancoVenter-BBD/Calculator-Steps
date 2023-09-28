@@ -75,6 +75,16 @@ function preprocess(equation) {
     // Replace multiply and divide symbols with * and /
     equation = equation.replace(/×/g, multSym);
     equation = equation.replace(/÷/g, slashSym);
+
+    // if starts with +, then add a 0
+    if (equation[0] === "+") {
+        equation = "0" + equation;
+    }
+
+    // check if equation ends with operation
+    if (containsOperation(equation.substring(equation.length - 1)) != "")
+        equation = equation.substring(0, equation.length - 1);
+
     const operation = containsOperation(equation.substring(1, equation.length));
 
     // if equation starts with - add 0
@@ -246,6 +256,9 @@ function toggleTheme() {
 
 // Function to evaluate a string equation using bodmas
 const calculateEquation = (equation) => {
+    if (equation == "")
+        return 0;
+
     // show the equation above answer
     document.getElementById("previousQuestion").innerHTML = document.getElementById("display").innerHTML + " = ";
 
