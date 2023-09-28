@@ -413,7 +413,7 @@ function storeHistory(question, answer) {
     }
     let tmpItem = `{
         "question": "${question}",
-        "answer": ${removeTrailingZeroes(answer)}
+        "answer": ${answer}
     }`;
     history.push(JSON.parse(tmpItem));
     localStorage.setItem("history", JSON.stringify(history));
@@ -576,6 +576,21 @@ document.addEventListener("keydown", (event) => {
         if (event.key == "," || event.key == "."){
             if(!displayVal.includes(".")){
                 displayVal += ".";
+            } else {
+                const operators = ["×", "÷", "+", "-", "(", ")", slashSym, powSym, percentSym, sqrtSym];
+                // get substring from the previous "."
+                let subStr = displayVal.substring(displayVal.lastIndexOf(".") + 1);
+                // check if the substring contains any of the operators
+                let canPlacePoint = false;
+                operators.forEach(element => {
+                    if(subStr.includes(element)){
+                        canPlacePoint = true;
+                    }
+                });
+
+                if(canPlacePoint){
+                    displayVal += ".";
+                }
             }
         }
     }
@@ -676,6 +691,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if(value == "."){
                         if(!displayVal.includes(".")){
                             displayVal += value;
+                        } else {
+                            const operators = ["×", "÷", "+", "-", "(", ")", slashSym, powSym, percentSym, sqrtSym];
+                            // get substring from the previous "."
+                            let subStr = displayVal.substring(displayVal.lastIndexOf(".") + 1);
+                            // check if the substring contains any of the operators
+                            let canPlacePoint = false;
+                            operators.forEach(element => {
+                                if(subStr.includes(element)){
+                                    canPlacePoint = true;
+                                }
+                            });
+            
+                            if(canPlacePoint){
+                                displayVal += ".";
+                            }
                         }
                     } else if (displayVal[displayVal.length - 1] === "%" && !isNaN(value)) {
                         // if value after percentage
