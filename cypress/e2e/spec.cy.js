@@ -76,7 +76,7 @@ describe("Enter a calculation and observe results and history", () => {
 
     cy.get("#clear").click();
 
-    cy.get('.list-group-item[question="1+1"]').click();
+    cy.get('li[question="1+1"]').click();
 
     cy.get("#display").contains("2").should((elem) => {
       expect(elem.text()).to.equal('2');
