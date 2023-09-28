@@ -429,32 +429,25 @@ function loadHistory() {
         let li = document.createElement("li");
         li.setAttribute("question", history[i].question);
         li.setAttribute("answer", history[i].answer);
-        li.classList.add("list-group-item");
-        let row = document.createElement("div");
-        row.classList.add("row");
-        let elQ = document.createElement("div");
-        elQ.classList.add("col-5");
-        let elA = document.createElement("div");
-        elA.classList.add("col-5");
-        let elEq = document.createElement("div");
-        elEq.classList.add("col-2");
-        let question = document.createElement("p");
-        let equals = document.createElement("p");
-        question.classList.add("text-end");
-        question.innerHTML = formatOutput(history[i].question);
-        let answer = document.createElement("p");
-        // answer.classList.add("lead");
-        answer.innerHTML = history[i].answer;
-        equals.innerHTML = "=";
-        equals.classList.add("text-center");
+        
+        // li.innerText = history[i].question + " = " + history[i].answer;
 
-        row.appendChild(elQ);
-        row.appendChild(elEq);
-        row.appendChild(elA);
-        elQ.appendChild(question);
-        elEq.appendChild(equals);
-        elA.appendChild(answer);
-        li.appendChild(row);
+        let q = document.createElement("p");
+        q.classList.add("left-text");
+        q.innerText = history[i].question;
+
+        let e = document.createElement("p");
+        e.classList.add("equal");
+        e.innerText = " = ";
+
+        let a = document.createElement("a");
+        a.classList.add("right-text");
+        a.innerHTML = history[i].answer;
+
+        li.appendChild(q);
+        li.appendChild(e);
+        li.appendChild(a);
+
         document.getElementById("historyDisplay").appendChild(li);
 
         li.addEventListener("click", function () {
@@ -589,6 +582,7 @@ document.addEventListener("keydown", (event) => {
 // Main DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', () => {
     console.log("[INFO] DOMContentLoaded");
+    localStorage.clear();
 
     // get stored theme from LocalStorage
     let theme = localStorage.getItem("theme");
