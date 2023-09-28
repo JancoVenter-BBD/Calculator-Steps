@@ -546,6 +546,76 @@ describe("Square root from button press", () => {
   });
 });
 
+describe("Power from button press", () => {
+  it("2^3 should result in 8", () => {
+    cy.visit("localhost:3000");
+    cy.get("#two").click();
+    cy.get("#power").click();
+    cy.get("#three").click();
+    cy.get("#close").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("8").should((elem) => {
+      expect(elem.text()).to.equal('8');
+    });
+  });
+
+  it("2^-3 should result in 0.125", () => {
+    cy.visit("localhost:3000");
+    cy.get("#two").click();
+    cy.get("#power").click();
+    cy.get("#subtract").click();
+    cy.get("#three").click();
+    cy.get("#close").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("0.125").should((elem) => {
+      expect(elem.text()).to.equal('0.125');
+    });
+  });
+
+  it("0^5 should result in 0", () => {
+    cy.visit("localhost:3000");
+    cy.get("#zero").click();
+    cy.get("#power").click();
+    cy.get("#five").click();
+    cy.get("#close").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("0").should((elem) => {
+      expect(elem.text()).to.equal('0');
+    });
+  });
+
+  it("7^0 should result in 1", () => {
+    cy.visit("localhost:3000");
+    cy.get("#seven").click();
+    cy.get("#power").click();
+    cy.get("#zero").click();
+    cy.get("#close").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("1").should((elem) => {
+      expect(elem.text()).to.equal('1');
+    });
+  });
+
+  it("1.5^2 should result in 2.25", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#decimal").click();
+    cy.get("#five").click();
+    cy.get("#power").click();
+    cy.get("#two").click();
+    cy.get("#close").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("2.25").should((elem) => {
+      expect(elem.text()).to.equal('2.25');
+    });
+  });
+});
+
 describe("Page Loads and buttons working", () => {
   it("Visits the calculator and checks for buttons", () => {
     cy.visit("localhost:3000");
