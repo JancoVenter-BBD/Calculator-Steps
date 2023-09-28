@@ -68,6 +68,11 @@ function preprocess(equation) {
     equation = equation.replace(/×/g, multSym);
     equation = equation.replace(/÷/g, slashSym);
 
+    // if equation starts with - add 0
+    if (equation[0] === "-") {
+        equation = "0" + equation;
+    }
+
     // Check if there are equal number of open and close brackets
     if ((equation.match(/\(/g) || []).length !== (equation.match(/\)/g) || []).length){
         return "Error: Mismatched brackets";
@@ -151,14 +156,18 @@ function roundAnswer(answer) {
     if (answer % 1 !== 0) {
         // check the number of decimal places
         let decimalPlaces = answer.toString().split(".")[1].length;
-        // if decimal places are more than MAX_DECIMAL_PLACES, round to MAX_DECIMAL_PLACES decimal places
         if (decimalPlaces > MAX_DECIMAL_PLACES) {
             answer = answer.toFixed(MAX_DECIMAL_PLACES);
             // answer = Math.round(answer * Math.pow(10, MAX_DECIMAL_PLACES)) / Math.pow(10, MAX_DECIMAL_PLACES);
-        }
-
+        }    
     }
-    return answer;
+    if(answer.toString().includes('.')){
+        // while the last character is a "0", remove it
+        while(answer.toString().endsWith('0')){
+            answer = answer.toString().slice(0,-1);
+        }
+    }
+    return Number(answer);
 }
 
 // Function to show and format error messages
