@@ -663,6 +663,72 @@ describe("Power from keystroke press", () => {
   });
 });
 
+describe("Percentage from button press", () => {
+  it("0% should result in 0", () => {
+    cy.visit("localhost:3000");
+    cy.get("#zero").click();
+    cy.get("#percent").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("0").should((elem) => {
+      expect(elem.text()).to.equal('0');
+    });
+  });
+
+  it("10% should result in 0.1", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#zero").click();
+    cy.get("#percent").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("0.1").should((elem) => {
+      expect(elem.text()).to.equal('0.1');
+    });
+  });
+
+  it("100% should result in 1", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#zero").click();
+    cy.get("#zero").click();
+    cy.get("#percent").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("1").should((elem) => {
+      expect(elem.text()).to.equal('1');
+    });
+  });
+
+  it("25.67% should result in 0.2567", () => {
+    cy.visit("localhost:3000");
+    cy.get("#two").click();
+    cy.get("#five").click();
+    cy.get("#decimal").click();
+    cy.get("#six").click();
+    cy.get("#seven").click();
+    cy.get("#percent").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("0.2567").should((elem) => {
+      expect(elem.text()).to.equal('0.2567');
+    });
+  });
+
+  it("134% should result in 1.34", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#three").click();
+    cy.get("#four").click();
+    cy.get("#percent").click();
+    cy.get("#equal").click();
+
+    cy.get("#display").contains("1.34").should((elem) => {
+      expect(elem.text()).to.equal('1.34');
+    });
+  });
+});
+
 describe("Page Loads and buttons working", () => {
   it("Visits the calculator and checks for buttons", () => {
     cy.visit("localhost:3000");
