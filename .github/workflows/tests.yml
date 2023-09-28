@@ -28,5 +28,10 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
-    - name: Cypress Tests
-      uses: cypress-io/github-action@v6
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress Tests
+        uses: cypress-io/github-action@v6
