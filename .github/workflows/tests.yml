@@ -33,6 +33,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install
+        uses: npm i
       - name: Cypress Tests
         uses: cypress-io/github-action@v6
         with:
