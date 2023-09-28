@@ -78,3 +78,55 @@ describe("BODMAS chain operation", () => {
   });
 });
 
+describe("Factorial", () => {
+  test('0! should be 1', () => {
+    expect(calculateEquation("0!")).toBe(1);
+  });
+
+  test('1! should be 1', () => {
+    expect(calculateEquation("1!")).toBe(1);
+  });
+
+  test('2! should be 2', () => {
+    expect(calculateEquation("2!")).toBe(2);
+  });
+
+  test('3! should be 6', () => {
+    expect(calculateEquation("3!")).toBe(6);
+  });
+
+  test('5! should be 120', () => {
+    expect(calculateEquation("5!")).toBe(120);
+  });
+
+  test('1.5! should be 1.3293', () => {
+    expect(Number(calculateEquation("1.5!").toPrecision(5))).toBe(1.3293);
+  });
+
+  test('-6! should be -720', () => {
+    expect(calculateEquation("-6!")).toBe(-720);
+  });
+});
+
+
+describe("Percentage", () => {
+  test('0% should be 0', () => {
+    expect(calculateEquation("0%")).toBe(0);
+  });
+
+  test('10% should be 0.1', () => {
+    expect(calculateEquation("10%")).toBe(0.1);
+  });
+
+  test('100% should be 1', () => {
+    expect(calculateEquation("100%")).toBe(1);
+  });
+
+  test('25.67% should be 0.2567', () => {
+    expect(calculateEquation("25.67%")).toBe(0.2567);
+  });
+
+  test('134% should be 1.34', () => {
+    expect(calculateEquation("134%")).toBe(1.34);
+  });
+});
