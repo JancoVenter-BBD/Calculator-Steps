@@ -326,7 +326,7 @@ describe("BODMAS and other tests from button press", () => {
 describe("BODMAS and other tests from keystrokes", () => {
   it("2^((2+2)×3!)/(4*2) should result in 2097152", () => {
     cy.visit("localhost:3000");
-    cy.get("body").type("2^((2+2)×3!)/(4*2){enter}");
+    cy.get("body").type("2^(2+2)×3!)/(4*2){enter}");
 
     cy.get("#display").contains("2097152").should((elem) => {
       expect(elem.text()).to.equal('2097152');
