@@ -207,6 +207,17 @@ function getIndexOfClosingBracket(equation, index) {
     return found ? j : -1;
 }
 
+function removeTrailingZeroes(equation) {
+    equation = String(equation);
+    while (equation.endsWith("0")) {
+        equation = equation.slice(0, -1);
+    }
+    if(equation.endsWith(".")) {
+        equation = equation.slice(0, -1);
+    }
+    return equation;
+}
+
 // Function to round answer to MAX_DECIMAL_PLACES
 function roundAnswer(answer) {
     if (isNaN(answer)) {
@@ -221,10 +232,7 @@ function roundAnswer(answer) {
         }    
     }
     if(answer.toString().includes('.')){
-        // while the last character is a "0", remove it
-        while(answer.toString().endsWith('0')){
-            answer = answer.toString().slice(0,-1);
-        }
+        removeTrailingZeroes(answer);
     }
     return Number(answer);
 }
@@ -405,7 +413,7 @@ function storeHistory(question, answer) {
     }
     let tmpItem = `{
         "question": "${question}",
-        "answer": ${answer}
+        "answer": ${removeTrailingZeroes(answer)}
     }`;
     history.push(JSON.parse(tmpItem));
     localStorage.setItem("history", JSON.stringify(history));
@@ -448,7 +456,7 @@ function loadHistory() {
         document.getElementById("historyDisplay").appendChild(li);
 
         li.addEventListener("click", function () {
-            displayVal = calculateEquation(history[i].question) + "";
+            displayVal = removeTrailingZeroes(calculateEquation(history[i].question).toFixed(MAX_DECIMAL_PLACES-1)) + "";
             if (displayVal.includes("Error")) {
                 showError(displayVal);
                 return;
@@ -496,7 +504,7 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
         // evaluate the expression
         let tmpQ = displayVal;
-        displayVal = calculateEquation(displayVal) + "";
+        displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
         if (displayVal.includes("Error")) {
             showError(displayVal);
             return;
@@ -513,7 +521,7 @@ document.addEventListener("keydown", (event) => {
     } else if (event.key === "=") {
         // evaluate the expression
         let tmpQ = displayVal;
-        displayVal = calculateEquation(displayVal) + "";
+        displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
         if (displayVal.includes("Error")) {
             showError(displayVal);
             return;
@@ -634,7 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 case "=":
                     // evaluate the expression
                     let tmpQ = displayVal;
-                    displayVal = calculateEquation(displayVal) + "";
+                    displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
                     if (displayVal.includes("Error")) {
                         showError(displayVal);
                         return;
