@@ -574,7 +574,6 @@ document.addEventListener("keydown", (event) => {
         }
 
         if (event.key == "," || event.key == "."){
-            console.log(displayVal);
             if(!displayVal.includes(".")){
                 displayVal += ".";
             } else {
