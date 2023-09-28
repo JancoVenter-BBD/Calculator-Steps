@@ -481,7 +481,7 @@ function loadHistory() {
 }
 
 // Function to clear history from LocalStorage
-function clearHistory(){
+const clearHistory = () => {
     localStorage.removeItem("history");
     document.getElementById("historyDisplay").innerHTML = "<p>No history</p>";;
 }
@@ -677,4 +677,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-export { calculateEquation };
+export { calculateEquation, clearHistory };
