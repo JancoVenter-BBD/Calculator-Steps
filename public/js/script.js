@@ -272,7 +272,7 @@ function toggleTheme() {
 }
 
 // Function to evaluate a string equation using bodmas
-function calculateEquation(equation) {
+const calculateEquation = (equation) => {
     // show the equation above answer
     document.getElementById("previousQuestion").innerHTML = document.getElementById("display").innerHTML + " = ";
 
@@ -677,4 +677,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-export default calculateEquation
+export { calculateEquation };
