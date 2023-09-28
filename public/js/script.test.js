@@ -49,4 +49,5 @@ describe("BODMAS chain operation", () => {
   test('"2^((2+2)×3!)/(4*2)" should result in 2097152', () => {
     expect(calculateEquation("2^((2+2)×3!)/(4*2)")).toBe(2097152);
   });
-})
+});
+
