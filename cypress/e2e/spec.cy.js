@@ -121,3 +121,16 @@ describe("Keystrokes are registered correctly", () => {
     });
   });
 });
+
+describe("Ensures the number cannot have 2 periods", () => {
+  it("Enters a calculation and checks the display", () => {
+    cy.visit("localhost:3000");
+    cy.get("#one").click();
+    cy.get("#decimal").click();
+    cy.get("#one").click();
+    cy.get("#decimal").click();
+    cy.get("#display").contains("1.1").should((elem) => {
+      expect(elem.text()).to.equal('1.1');
+    });
+  });
+});
