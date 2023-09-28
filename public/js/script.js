@@ -318,7 +318,7 @@ const calculateEquation = (equation) => {
     }
 
     // Round to 5 decimal places if necessary
-    answer = roundAnswer(answer);
+    answer = roundAnswer(answer).replace(/\.?0+$/, '');
 
     return answer;
 }
