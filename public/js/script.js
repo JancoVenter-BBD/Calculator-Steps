@@ -676,3 +676,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+export default calculateEquation
