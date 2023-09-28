@@ -16,8 +16,14 @@ describe("Square root", () => {
     test('"√(-4)" should result in Error: Negative square root', () => {
         expect(calculateEquation("√(-4)")).toBe("Error: Negative square root");
     });
-    test('"√(2)" should result in 1.414', () => {
+    test('"√(2)" should result in 1.4142135624', () => {
         expect(calculateEquation("√(2)")).toBe(1.4142135624);
+    });
+    test('"√(0.4)" should result in 0.632455532', () => {
+      expect(calculateEquation("√(0.4)")).toBe(0.632455532);
+    });
+    test('"√(-(-4))" should result in 2', () => {
+      expect(calculateEquation("√(-(-4))")).toBe(2);
     });
 });
 
