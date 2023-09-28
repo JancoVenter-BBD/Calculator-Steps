@@ -81,6 +81,32 @@ describe("BODMAS chain operation", () => {
   });
 });
 
+describe("Brackets", () => {
+  test('"(2+2)" should result in 4', () => {
+    expect(calculateEquation("(2+2)")).toBe(4);
+  })
+
+  test('"(2+2)*3" should result in 12', () => {
+    expect(calculateEquation("(2+2)*3")).toBe(12);
+  })
+
+  test('"(2+2)*3^(2)" should result in 36', () => {
+    expect(calculateEquation("(2+2)*3^(2)")).toBe(36);
+  })
+
+  test('"((2+2)*3" should result in "Error: Mismatched brackets"', () => {
+    expect(calculateEquation("((2+2)*3")).toBe("Error: Mismatched brackets");
+  })
+
+  test('"(2+2)*3)" should result in "Error: Mismatched brackets"', () => {
+    expect(calculateEquation("((2+2)*3")).toBe("Error: Mismatched brackets");
+  })
+
+  test('"(2+2)*3^(2))" should result in "Error: Mismatched brackets"', () => {
+    expect(calculateEquation("((2+2)*3^(2)")).toBe("Error: Mismatched brackets");
+  })
+});
+
 describe("Factorial", () => {
   test('0! should be 1', () => {
     expect(calculateEquation("0!")).toBe(1);
