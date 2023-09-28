@@ -659,4 +659,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-export { calculateEquation, clearHistory };
+export { calculateEquation, clearHistory, toggleTheme };
