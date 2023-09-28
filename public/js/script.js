@@ -413,7 +413,7 @@ function storeHistory(question, answer) {
     }
     let tmpItem = `{
         "question": "${question}",
-        "answer": ${removeTrailingZeroes(answer)}
+        "answer": ${answer}
     }`;
     history.push(JSON.parse(tmpItem));
     localStorage.setItem("history", JSON.stringify(history));
@@ -502,12 +502,13 @@ document.addEventListener("keydown", (event) => {
     }
     // check if the key is "Enter"
     if (event.key === "Enter") {
-        // evaluate the expression
         let tmpQ = displayVal;
-        displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
+        displayVal = calculateEquation(displayVal) + "";
         if (displayVal.includes("Error")) {
             showError(displayVal);
             return;
+        } else {
+            displayVal = removeTrailingZeroes(Number(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
         }
         storeHistory(tmpQ, displayVal);
     } else if (event.key === "Backspace") {
@@ -519,12 +520,13 @@ document.addEventListener("keydown", (event) => {
             displayVal = displayVal.substring(0, displayVal.length - 1);
         }
     } else if (event.key === "=") {
-        // evaluate the expression
         let tmpQ = displayVal;
-        displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
+        displayVal = calculateEquation(displayVal) + "";
         if (displayVal.includes("Error")) {
             showError(displayVal);
             return;
+        } else {
+            displayVal = removeTrailingZeroes(Number(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
         }
         storeHistory(tmpQ, displayVal);
     } else if (event.key == "+") {
@@ -550,6 +552,10 @@ document.addEventListener("keydown", (event) => {
             if (displayVal == "0") {
                 displayVal = "";
             }
+            else if (displayVal[displayVal.length - 1] === "%") {
+                // check if value after percentage 
+                displayVal += "×";
+            }
             displayVal += event.key;
         }
         //check if key is *
@@ -572,6 +578,21 @@ document.addEventListener("keydown", (event) => {
         if (event.key == "," || event.key == "."){
             if(!displayVal.includes(".")){
                 displayVal += ".";
+            } else {
+                const operators = ["×", "÷", "+", "-", "(", ")", slashSym, powSym, percentSym, sqrtSym];
+                // get substring from the previous "."
+                let subStr = displayVal.substring(displayVal.lastIndexOf(".") + 1);
+                // check if the substring contains any of the operators
+                let canPlacePoint = false;
+                operators.forEach(element => {
+                    if(subStr.includes(element)){
+                        canPlacePoint = true;
+                    }
+                });
+
+                if(canPlacePoint){
+                    displayVal += ".";
+                }
             }
         }
     }
@@ -642,10 +663,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 case "=":
                     // evaluate the expression
                     let tmpQ = displayVal;
-                    displayVal = removeTrailingZeroes(calculateEquation(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
+                    displayVal = calculateEquation(displayVal) + "";
                     if (displayVal.includes("Error")) {
                         showError(displayVal);
                         return;
+                    } else {
+                        displayVal = removeTrailingZeroes(Number(displayVal).toFixed(MAX_DECIMAL_PLACES-1)) + "";
                     }
                     storeHistory(tmpQ, displayVal);
                     break;
@@ -672,8 +695,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if(value == "."){
                         if(!displayVal.includes(".")){
                             displayVal += value;
+                        } else {
+                            const operators = ["×", "÷", "+", "-", "(", ")", slashSym, powSym, percentSym, sqrtSym];
+                            // get substring from the previous "."
+                            let subStr = displayVal.substring(displayVal.lastIndexOf(".") + 1);
+                            // check if the substring contains any of the operators
+                            let canPlacePoint = false;
+                            operators.forEach(element => {
+                                if(subStr.includes(element)){
+                                    canPlacePoint = true;
+                                }
+                            });
+            
+                            if(canPlacePoint){
+                                displayVal += ".";
+                            }
                         }
                     } else if (displayVal[displayVal.length - 1] === "%" && !isNaN(value)) {
+                        // if value after percentage
                         displayVal += "×" + value;
                     }
                     else {
