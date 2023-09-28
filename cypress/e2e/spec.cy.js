@@ -377,7 +377,7 @@ describe("Division from button press", () => {
     cy.get("#one").click();
     cy.get("#zero").click();
     cy.get("#divide").click();
-    cy.get("#one").click();
+    cy.get("#zero").click();
     cy.get("#equal").click();
 
     cy.get("#display").contains("Error: Division by zero").should((elem) => {
