@@ -780,7 +780,7 @@ describe("Factorial from keystroke", () => {
     cy.get("body").type("1.5!{enter}");
 
     cy.get("#display").contains("1.3293").should((elem) => {
-      expect(elem.text()).to.be.closeTo('1.3293', 4);
+      expect(Number(elem.text())).to.be.closeTo(1.3293, 4);
     });
   });
 
@@ -859,7 +859,7 @@ describe("Factorial from button press", () => {
     cy.get("#equal").click();
 
     cy.get("#display").contains("1.3293").should((elem) => {
-      expect(elem.text()).to.be.closeTo('1.3293', 4);
+      expect(Number(elem.text())).to.be.closeTo(1.3293, 4);
     });
   });
 
