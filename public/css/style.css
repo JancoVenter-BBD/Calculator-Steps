@@ -7,7 +7,7 @@
 
     --gray-color: rgb(108, 117, 125);
 
-    
+
     /* dark mode toggle */
     --slider-background-color: #ccc;
     --slider-background-color-before: white;
@@ -16,7 +16,7 @@
     /* calculator */
     --calculator-box-shadow: rgba(127, 127, 127, 1);
     --previous-question-color: gray;
-    
+
     --calculator-other-btn-color: var(--gray-color);
     --calculator-ops-btn-color: rgb(255, 193, 7);
     --calculator-num-btn-color: rgb(33, 37, 41);
@@ -25,15 +25,22 @@
 }
 
 
-
 body {
     overflow-x: hidden;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+}
+
+body.light-mode {
     color: var(--color);
     background-color: var(--background-color);
+}
+
+body.dark-mode {
+    color: var(--background-color) !important;
+    background-color: var(--color) !important;
 }
 
 
@@ -148,7 +155,6 @@ input:checked+.slider:before {
 }
 
 .calculator-screen {
-    background-color: var(--section-bg-color);
     border-radius: 80px 80px 0 0;
     text-align: right;
     padding: 20px 60px 20px 20px;
@@ -156,10 +162,21 @@ input:checked+.slider:before {
     margin: 0px;
     border-bottom: 1px solid var(--border-color);
 }
+.calculator-screen.light-mode {
+    background-color: var(--section-bg-color);
+}
+.calculator-screen.dark-mode {
+    background-color: var(--color);
+}
 
 #previousQuestion {
-    color: var(--previous-question-color);
     font-size: 24px;
+}
+#previousQuestion.light-mode {
+    color: var(--previous-question-color);
+}
+#previousQuestion.dark-mode {
+    color: var(--background-color);
 }
 
 #display {
@@ -168,9 +185,14 @@ input:checked+.slider:before {
 }
 
 .calculator-btns {
-    background-color: var(--info-background-color);
     padding: 50px 20px 50px 20px;
     border-radius: 0px 0px 80px 80px;
+}
+.calculator-btns.lgiht-mode {
+    background-color: var(--info-background-color);
+}
+.calculator-btns.dark-mode {
+    background-color: var(--color);
 }
 
 .calculator-btns ul {
@@ -208,30 +230,77 @@ input:checked+.slider:before {
     height: 90px;
 }
 
-#sqrt,
-#clear,
-#open,
-#close,
-#fact,
-#power,
-#pi,
-#percent {
+#sqrt.light-mode,
+#clear.light-mode,
+#open.light-mode,
+#close.light-mode,
+#fact.light-mode,
+#power.light-mode,
+#pi.light-mode,
+#percent.light-mode {
     color: var(--calculator-other-btn-color);
     border: solid 1px var(--calculator-other-btn-color);
 }
+#sqrt.dark-mode,
+#clear.dark-mode,
+#open.dark-mode,
+#close.dark-mode,
+#fact.dark-mode,
+#power.dark-mode,
+#pi.dark-mode,
+#percent.dark-mode {
+    color: var(--background-color);
+    background-color: var(--calculator-other-btn-color);
+    border: solid 1px var(--calculator-other-btn-color);
+}
 
-#divide,
-#multiply,
-#subtract,
-#add,
-#equal {
+#divide.light-mode,
+#multiply.light-mode,
+#subtract.light-mode,
+#add.light-mode,
+#equal.light-mode {
     color: var(--calculator-ops-btn-color);
     border: 1px solid var(--calculator-ops-btn-color);
 }
 
-#zero, #one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #decimal {
+#divide.dark-mode,
+#multiply.dark-mode,
+#subtract.dark-mode,
+#add.dark-mode,
+#equal.dark-mode {
+    color: var(--color);
+    background-color: var(--calculator-ops-btn-color);
+}
+
+#zero.light-mode,
+#one.light-mode,
+#two.light-mode,
+#three.light-mode,
+#four.light-mode,
+#five.light-mode,
+#six.light-mode,
+#seven.light-mode,
+#eight.light-mode,
+#nine.light-mode,
+#decimal.light-mode {
     color: var(--calculator-num-btn-color);
     border: 1px solid var(--calculator-num-btn-color);
+}
+
+#zero.dark-mode,
+#one.dark-mode,
+#two.dark-mode,
+#three.dark-mode,
+#four.dark-mode,
+#five.dark-mode,
+#six.dark-mode,
+#seven.dark-mode,
+#eight.dark-mode,
+#nine.dark-mode,
+#decimal.dark-mode {
+    background-color: var(--color);
+    color: var(--background-color);
+    border: 1px solid var(--background-color);
 }
 
 
@@ -250,7 +319,6 @@ input:checked+.slider:before {
 }
 
 .history-section h3 {
-    background-color: var(--section-bg-color);
     margin: 0;
     padding-left: 10px;
     padding-top: 7px;
@@ -258,9 +326,12 @@ input:checked+.slider:before {
     border-radius: 1rem 1rem 0 0;
     border: 1px solid var(--border-color);
 }
+.history-section h3.light-mode {
+    background-color: var(--section-bg-color);
+    color: var(--color);
+}
 
 .history-section ul {
-    background-color: var(--info-background-color);
     padding: 20px;
     margin: 0;
     border-radius: 0 0 1rem 1rem;
@@ -269,29 +340,35 @@ input:checked+.slider:before {
     border-right: 1px solid var(--border-color);
     margin-bottom: 1rem;
 }
+.history-section ul.light-mode {
+    background-color: var(--info-background-color);
+    color: var(--color);
+}
 
 #historyDisplay {
     list-style-type: none;
 }
 
 #historyDisplay li {
-    display: flex; 
+    display: flex;
     align-items: center;
-    justify-content: space-between; 
-  }
-  
-  .left-text, .right-text, .equal {
-    flex: 1; 
+    justify-content: space-between;
+}
+
+.left-text,
+.right-text,
+.equal {
+    flex: 1;
     text-align: center;
-  }
-  
-  .left-text {
+}
+
+.left-text {
     text-align: right;
-  }
-  
-  .right-text {
-    text-align: left; 
-  }
+}
+
+.right-text {
+    text-align: left;
+}
 
 #historyDisplay li:hover {
     cursor: pointer;
@@ -301,17 +378,29 @@ input:checked+.slider:before {
 
 .red-btn {
     padding: 0.4rem;
-    color: var(--history-btn-color);
-    background-color: transparent;
     border: 1px solid var(--history-btn-color);
     border-radius: 0.5rem;
     width: max-content;
 }
+.red-btn.light-mode {
+    color: var(--history-btn-color);
+    background-color: var(--background-color);
+}
+.red-btn.dark-mode {
+    background-color: var(--history-btn-color);
+    color: var(--background-color);
+}
 
-.red-btn:hover {
+.red-btn.light-mode:hover {
     background-color: var(--history-btn-color);
     color: var(--history-btn-color-hover);
 }
+.red-btn.dark-mode:hover {
+    background-color: var(--color);
+    color: var(--background-color);
+    border-color: var(--background-color);
+}
+
 
 @media screen and (max-width: 1200px) {
     .history-section {
