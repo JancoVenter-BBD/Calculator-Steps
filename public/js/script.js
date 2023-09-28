@@ -62,15 +62,53 @@ function factorial(n) {
     }
 }
 
+// check if contains an operation
+function containsOperation(equation) {
+    const ops = [multSym, "×", slashSym, "+", "-"];
+    for (let i = 0 ; i < ops.length ; i++) {
+        if (equation.indexOf(ops[i]) != -1) 
+            return ops[i];
+    }
+    return "";
+}
+
 // Function to pre-process the string
 function preprocess(equation) {
     // Replace multiply and divide symbols with * and /
     equation = equation.replace(/×/g, multSym);
     equation = equation.replace(/÷/g, slashSym);
+    const operation = containsOperation(equation.substring(1, equation.length));
 
     // if equation starts with - add 0
-    if (equation[0] === "-") {
+    if (equation[0] === "-" && operation == "") {
         equation = "0" + equation;
+    }
+    else {
+        let indexOp;
+
+        // if first char is a minus, then the operation you want is not that (go to next one)
+        if (equation[0] === "-") {
+            indexOp = equation.substring(1, equation.lenth).indexOf(operation) + 1;
+        }
+        else {
+            indexOp = equation.substring(0, equation.lenth).indexOf(operation);
+        }
+        
+        // if "-(" then "0-("
+        if (equation[0] === "-" && equation[1] === "(") {
+            equation = "0" + equation;
+        } 
+        // if has 2 minus: "-5*-4" then "(-5)*(-4)"
+        else if (equation[indexOp + 1] === "-") {
+            equation = "(" + equation.substring(0, indexOp) + ")" + operation + "(" + equation.substring(indexOp + 1) + ")";
+        }
+        // if only one minus: "-5*4" then "(-5)*4" 
+        else if (equation[0] === "-") {
+            equation = "(" + equation.substring(0, indexOp) + ")" + operation +  equation.substring(indexOp + 1);
+        } 
+        else { 
+            equation = equation;
+        }
     }
 
     // Check if there are equal number of open and close brackets
@@ -153,7 +191,10 @@ function getIndexOfClosingBracket(equation, index) {
 
 // Function to round answer to MAX_DECIMAL_PLACES
 function roundAnswer(answer) {
-    if (answer % 1 !== 0) {
+    if (isNaN(answer)) {
+        return "Error: Nan";
+    }
+    else if (answer % 1 !== 0) {
         // check the number of decimal places
         let decimalPlaces = answer.toString().split(".")[1].length;
         if (decimalPlaces > MAX_DECIMAL_PLACES) {
@@ -591,8 +632,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (displayVal == "0" && ((value >= "0" && value <= "9") || value === piSym || value === openBr || value === closeBr)) {
                         displayVal = "";
                     }
-                    // add the character to the display
-                    displayVal += value;
+                    
+                    if (value == "-" && displayVal == "0") {
+                        displayVal = value;
+                    }
+                    else {
+                        // add the character to the display
+                        displayVal += value;
+                    }
                     break;
             }
 
