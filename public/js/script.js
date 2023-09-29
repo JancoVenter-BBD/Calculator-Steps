@@ -358,6 +358,8 @@ const calculateEquation = (equation) => {
                 numbers[numbers.length - 1] = Math.pow(numbers[numbers.length - 1], parseFloat(bracketAnswer));
 
                 i = closeingBracketIndex;
+            } else if(char === "+"){
+                operators.push("-");
             } else {
                 operators.push(char);
             }
